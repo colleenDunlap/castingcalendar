@@ -17,8 +17,17 @@ class Casting(models.Model):
 
 class Calendar(models.Model):
     name = models.CharField(max_length=200)
-    castings = models.ManyToManyField(Casting, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_public = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
+
+class CalendarItem(models.Model):
+    name = models.CharField(max_length=150)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    description = models.CharField(max_length=350)
+    casting = models.ForeignKey(Casting, on_delete=models.SET_NULL, null=True)
+    calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE, default=None)
+    is_complete = models.BooleanField(default=False)
     def __str__(self):
         return self.name
