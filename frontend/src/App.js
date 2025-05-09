@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 import { Button } from 'bootstrap';
 
 const CalendarItems = [
-  [
+  
     {
         "id": 1,
         "name": "Nerdlesque",
@@ -23,7 +23,6 @@ const CalendarItems = [
         "calendar": 1,
         "is_complete": false
     }
-]
 ]
 
 class App extends Component{
@@ -72,8 +71,10 @@ class App extends Component{
           className = {`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todo":""
           }`}
-        >
+        
           title = {item.description}
+          >
+            {item.name}
         </span>
         <span>
           <button
